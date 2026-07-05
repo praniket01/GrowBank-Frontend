@@ -1,30 +1,36 @@
 "use client";
 
-import { CreditCard } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { IndianRupee } from "lucide-react";
+import { useBalance } from "@/features/account/hooks/useBalance";
 
 export default function BalanceCard() {
+  const { data, isLoading } = useBalance();
+
+  if (isLoading) {
+    return (
+      <div className="rounded-xl border bg-card p-6 animate-pulse h-44" />
+    );
+  }
+
   return (
-    <Card className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
-      <CardContent className="p-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm opacity-80">
-              Current Balance
-            </p>
+    <div className="rounded-xl border bg-card p-6">
 
-            <h1 className="mt-2 text-4xl font-bold">
-              ₹0.00
-            </h1>
+      <div className="flex items-center justify-between">
 
-            <p className="mt-3 text-sm opacity-80">
-              Savings Account
-            </p>
-          </div>
+        <div>
+          <p className="text-muted-foreground text-sm">
+            Current Balance
+          </p>
 
-          <CreditCard size={50} className="opacity-80" />
+          <h2 className="mt-3 text-4xl font-bold">
+            ₹ {data.toLocaleString("en-IN")}
+          </h2>
         </div>
-      </CardContent>
-    </Card>
+
+        {/* <IndianRupee className="h-10 w-10 text-primary" /> */}
+
+      </div>
+
+    </div>
   );
 }

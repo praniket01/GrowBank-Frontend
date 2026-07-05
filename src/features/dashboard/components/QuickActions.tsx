@@ -11,7 +11,7 @@ export default function QuickActions() {
       <h2 className="text-2xl font-semibold">
         Quick Actions
       </h2>
-
+x 
       <div className="grid gap-6 md:grid-cols-3">
         <ActionCard
           title="Transfer Money"

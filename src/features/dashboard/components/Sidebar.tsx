@@ -1,3 +1,4 @@
+"use client"
 import { logoutItem, sidebarItems } from "../config/sidebar.config";
 import SidebarItem from "./SidebarItem";
 

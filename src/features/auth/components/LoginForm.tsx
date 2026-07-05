@@ -10,7 +10,7 @@ import FormInput from "@/shared/components/form/FormInput";
 import FormPassword from "@/shared/components/form/FormPassword";
 import LoadingButton from "@/shared/components/form/LoadingButton";
 
-import { loginSchema, LoginForm as LoginFormValues } from "../schema/login.schema";
+import { loginSchema, LoginForm as LoginFormValues,signinSchema, SigninForm } from "../schema/login.schema";
 import { useLogin } from "../hooks/useLogin";
 
 import { ROUTES } from "@/shared/constants/routes";
@@ -24,11 +24,11 @@ export default function LoginForm() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormValues>({
-    resolver: zodResolver(loginSchema),
+  } = useForm<SigninForm>({
+    resolver: zodResolver(signinSchema),
   });
 
-  const onSubmit = (values: LoginFormValues) => {
+  const onSubmit = (values: SigninForm) => {
     loginMutation.mutate(values,{
       onSuccess: () => {
         router.replace(ROUTES.DASHBOARD);

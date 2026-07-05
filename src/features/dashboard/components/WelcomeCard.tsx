@@ -1,26 +1,29 @@
 "use client";
 
-import { Hand } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
+import { userCurrentUser } from "@/features/auth/hooks/useCurrentUser";
 
 export default function WelcomeCard() {
+  const { data: user, isLoading } = userCurrentUser();
+
+  if (isLoading) {
+    return (
+      <div className="rounded-xl border bg-card p-6 animate-pulse h-36" />
+    );
+  }
+
   return (
-    <Card>
-      <CardContent className="p-6">
-        <div className="flex items-center gap-3">
-          <Hand className="text-yellow-500" />
+    <div className="rounded-xl border bg-card p-6">
+      <p className="text-muted-foreground text-sm">
+        Welcome Back
+      </p>
 
-          <div>
-            <h2 className="text-2xl font-bold">
-              Welcome Back 👋
-            </h2>
+      <h1 className="mt-2 text-3xl font-bold">
+        {user?.name} 👋
+      </h1>
 
-            <p className="text-muted-foreground">
-              Manage your accounts and transfers securely with GrowBank.
-            </p>
-          </div>
-        </div>
-      </CardContent>
-    </Card>
+      <p className="mt-2 text-muted-foreground">
+        Here's an overview of your GrowBank account.
+      </p>
+    </div>
   );
 }

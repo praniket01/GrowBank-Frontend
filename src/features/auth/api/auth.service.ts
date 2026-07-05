@@ -22,7 +22,7 @@ class AuthService {
     }
 
     profile(){
-        return apiClient.get("/auth/me");
+        return apiClient.get("/account/user");
     }
 }
 
