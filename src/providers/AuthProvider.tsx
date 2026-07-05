@@ -1,3 +1,5 @@
+"use client"
+
 import { useProfile } from "@/features/auth/hooks/useProfile";
 import { useAuthStore } from "@/features/auth/store/auth.store"
 import { stat } from "fs";

@@ -33,11 +33,12 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <QueryProvider>
           <AuthProvider>
-           <Toaster richColors position="top-right" />
           {children}
+           <Toaster richColors position="top-right" />
+          
           </AuthProvider>
         </QueryProvider>
-        {children}</body>
+        </body>
     </html>
   );
 }

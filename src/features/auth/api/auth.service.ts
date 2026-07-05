@@ -10,6 +10,7 @@ class AuthService {
     }
 
     signup(data : SignupRequest) {
+        console.log(data);
         return apiClient.post<SignupRequest>(
             "/auth/register",
             data
