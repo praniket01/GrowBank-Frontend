@@ -9,7 +9,7 @@ export default function Sidebar(){
             <h1 className="text-2xl font-bold text-blue-600">
                 GrowBank
             </h1>
-            <p className="text-sm text-gray-50">
+            <p className="text-sm text-gray-0">
                 Digital Banking
             </p>
         </div>

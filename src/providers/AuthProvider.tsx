@@ -22,7 +22,8 @@ export default function AuthProvider({ children } : Props) {
     useEffect(() => {
         setLoading(isLoading);
         if(!token) return;
-        if(data) { login(data.data.user, data.data.token)}
+        console.log("in auth provider",data)
+        if(data) { login(data, data.token)}
         if(isError){
             logout();
         }
