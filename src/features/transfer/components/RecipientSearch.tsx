@@ -6,8 +6,17 @@ import { useDebounce } from "use-debounce";
 import FormInput from "@/shared/components/form/FormInput";
 import { useSearchUsers } from "../hooks/useSearchUsers";
 import RecipientCard from "./RecipientCard";
+import { useTransferStore } from "../store/transferStore";
 
 export default function RecipientSearch() {
+
+    const recipient = useTransferStore(
+        (state) => state.recipient
+    );
+
+    const clearRecipient = useTransferStore(
+        (state) => state.clearRecipient
+    );
 
   const [search, setSearch] = useState("");
 
@@ -18,6 +27,27 @@ export default function RecipientSearch() {
     data: users,
     isLoading,
   } = useSearchUsers(debouncedSearch);
+
+  if(recipient){
+    return(
+        <div className="rounded-lg border bg-green-50 p-4">
+            <p className="text-sm text-muted-foreground">
+                Recipient
+            </p>
+            <h3 className="mt-1 text-lg font-semibold">
+                {recipient.name}
+            </h3>
+            <p className="text-sm text-muted-foreground">
+                {recipient.email}
+            </p>
+            <button className="mt-3 text-sm text-blue-600
+            "
+            onClick={clearRecipient}>
+                Change Recipient
+            </button>
+        </div>
+    )
+  }
 
   return (
     <div className="space-y-4">

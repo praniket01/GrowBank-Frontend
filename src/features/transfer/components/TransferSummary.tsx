@@ -1,8 +1,14 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { useTransferStore } from "../store/transferStore"
 
 export default function TransferSummary(){
+
+  const recipient = useTransferStore((state) => {
+      state.recipient
+  })
+
     return(
          <div className="rounded-lg border p-5 space-y-4">
 
@@ -12,7 +18,7 @@ export default function TransferSummary(){
 
       <div className="flex justify-between">
 
-        <span>Recipient</span>
+        <span>{recipient?.name ?? "-"}</span>
 
         <span>-</span>
 
@@ -26,7 +32,9 @@ export default function TransferSummary(){
 
       </div>
 
-      <Button className="w-full">
+      <Button className="w-full"
+      disabled={!recipient}
+      >
 
         Continue
 

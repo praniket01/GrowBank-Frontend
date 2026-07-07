@@ -2,6 +2,7 @@
 
 import { UserCircle2 } from "lucide-react";
 import { SearchUser } from "../types/user.types";
+import { useTransferStore } from "../store/transferStore";
 
 interface RecipientCardProps {
   user: SearchUser;
@@ -11,9 +12,12 @@ export default function RecipientCard({
   user,
 }: RecipientCardProps) {
 
+    const setRecipient = useTransferStore((state) => state.setRecipient)
+
   return (
     <button
       type="button"
+      onClick={() => setRecipient(user)}
       className="
         w-full
         rounded-lg
