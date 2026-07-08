@@ -1,6 +1,8 @@
 export interface TransferRequest {
-    recipientId : string,
+    fromAccount : string,
+    toAccount : string,
     amount : number,
+    idempotencyKey : string
 }
 
 export interface TransferResponse {
