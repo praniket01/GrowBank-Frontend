@@ -1,6 +1,6 @@
 "use client";
 
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import securityService from "../api/security.service";
 import { useTransferStore } from "../store/transferStore";
@@ -11,7 +11,7 @@ export const useVerifyOtp = () => {
         useTransferStore(
             state => state.setTransaction
         );
-
+    const queryClient = useQueryClient();
     const setStep = useTransferStore(
         state => state.setStep
     );
@@ -22,6 +22,9 @@ export const useVerifyOtp = () => {
 
         onSuccess: (response) => {
 
+            queryClient.invalidateQueries({
+                queryKey : ["balance"],
+            });
             toast.success("Transaction Successful");
 
             setTransaction(response.data?.success)
