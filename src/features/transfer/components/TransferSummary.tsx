@@ -12,8 +12,7 @@ export default function TransferSummary(){
 
   const amount = useTransferStore((state) =>state.amount);
   
-  const {data : user} = userCurrentUser();
-  const transfer = useTransfer();
+  const setStep = useTransferStore((state) => state.setStep);
 
   return(
          <div className="rounded-lg border p-5 space-y-4">
@@ -39,18 +38,12 @@ export default function TransferSummary(){
       </div>
 
       <Button className="w-full"
-      disabled={!recipient || amount <= 0 || transfer.isPending}
-      onClick={ () => {
-          if(!user || !recipient) return;
-          transfer.mutate({
-            fromAccount : user._id,
-            toAccount : recipient._id,
-            amount,
-            idempotencyKey : generateIdempotencyKey()
-          });
+      disabled={!recipient || amount <= 0 }
+      onClick={() => {
+        setStep("REVIEW")
       }}
       >
-        {transfer.isPending ? "Transferring" : "Continue"}
+        Continue
       </Button>
 
     </div>
