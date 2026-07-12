@@ -10,15 +10,16 @@ import FormInput from "@/shared/components/form/FormInput";
 import FormPassword from "@/shared/components/form/FormPassword";
 import LoadingButton from "@/shared/components/form/LoadingButton";
 
-import { loginSchema, LoginForm as LoginFormValues,signinSchema, SigninForm } from "../schema/login.schema";
+import { loginSchema, LoginForm as LoginFormValues, signinSchema, SigninForm } from "../schema/login.schema";
 import { useLogin } from "../hooks/useLogin";
 
 import { ROUTES } from "@/shared/constants/routes";
 import { useRouter } from "next/navigation";
+import { useAuthStore } from "../store/auth.store";
 
 export default function LoginForm() {
   const loginMutation = useLogin();
-
+  const user = useAuthStore();
   const router = useRouter();
   const {
     register,
@@ -29,9 +30,12 @@ export default function LoginForm() {
   });
 
   const onSubmit = (values: SigninForm) => {
-    loginMutation.mutate(values,{
+    loginMutation.mutate(values, {
       onSuccess: () => {
-        router.replace(ROUTES.DASHBOARD);
+        if (!user.user.data.user.hasTransactionPin)
+          router.replace('/setup-pin');
+        else
+          router.replace(ROUTES.DASHBOARD);
       }
     });
   };

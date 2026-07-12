@@ -13,6 +13,7 @@ export interface User {
   role: UserRole;
   createdAt: string;
   updatedAt: string;
+  hasTransactionPin : boolean
 }
 
 export interface LoginRequest {
