@@ -7,7 +7,7 @@ export const AuthGuard = ({ children }: { children: React.ReactNode }) => {
     const router = useRouter();
     const { data: user, isLoading, isError } = userCurrentUser();
 
-    const token = typeof window !== "undefined" ? localStorage.getItem("token") : null;
+    const token = typeof window !== "undefined" ? localStorage.getItem("growbank-auth") : null;
 
     useEffect(() => {
         if (!token) {

@@ -32,7 +32,8 @@ export default function LoginForm() {
   const onSubmit = (values: SigninForm) => {
     loginMutation.mutate(values, {
       onSuccess: () => {
-        if (!user.user.data.user.hasTransactionPin)
+        console.log("Login User",);
+        if (!user.user?.hasTransactionPin)
           router.replace('/setup-pin');
         else
           router.replace(ROUTES.DASHBOARD);

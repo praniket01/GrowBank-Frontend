@@ -10,6 +10,6 @@ export default function DashboardLayout({
             <DashboardShell>
                 {children}
             </DashboardShell>
-        </AuthGuard>
+        // </AuthGuard>
     )
 }

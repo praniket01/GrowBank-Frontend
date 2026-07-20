@@ -26,7 +26,9 @@ export const useVerifyOtp = () => {
                 queryKey : ["balance"],
             });
             toast.success("Transaction Successful");
-
+            queryClient.invalidateQueries({
+                queryKey : ["transaction-History"]
+            });
             setTransaction(response.data?.success)
             setStep("PROCESSING");
 

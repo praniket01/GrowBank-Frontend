@@ -21,8 +21,7 @@ export const useTransfer = () => {
             });
             queryClient.invalidateQueries({
                 queryKey : ["transactions"]
-            })
-
+            });
         },
         onError : () => {
             toast.error(
